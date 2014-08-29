@@ -1,2 +1,14 @@
+.idea
+*.iml
+.DS_Store
+.cache
 .gradle
-build/
+.nb-gradle
+.classpath
+.project
+.settings
+.site*
+bin
+build
+out
+target

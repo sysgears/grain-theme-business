@@ -1,0 +1,9 @@
+---
+layout: default
+---
+${include "post.html"}
+${content}
+
+<% site.pages.findAll { it.layout == 'post1' }.each { page -> %>
+<p><a href="${site.url}${page.url}">${page.title}</a></p>
+<% } %>

@@ -1,0 +1,29 @@
+---
+business_card:
+    heading: Business Casual
+    address: 3481 Melrose Place | Beverly Hills, CA 90210 | 123.456.7890
+navigation:
+    brand: Business Casual
+sections:
+- name: Home
+  link: /
+- name: About
+  link: about.html
+- name: Blog
+  link: blog.html
+- name: Contact
+  link: contact.html
+footer:
+  text: Copyright &copy; Your Website 2014
+---
+<!DOCTYPE html>
+<html lang="en">
+    ${include "head.html"}
+    <body>
+        ${include "business_card.html"}
+        ${include "navigation.html"}
+        ${content}
+        ${include "footer.html"}
+        ${include "javascripts.html"}
+    </body>
+</html>

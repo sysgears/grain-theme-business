@@ -22,10 +22,38 @@ class ResourceMapper {
     def map = { resources ->
 
         def refinedResources = resources.findResults(filterPublished).collect { Map resource ->
-            fillDates << resource
+            customizeUrls << fillDates << resource
         }
 
         refinedResources
+    }
+
+    /**
+     * Customize site post URLs
+     */
+    private def customizeUrls = { Map resource ->
+        String location = resource.location
+        def update = [:]
+
+        switch (location) {
+            case ~/\/articles\/.*/:
+                update.url = getPostUrl('/articles/', location)
+                break
+        }
+
+        resource + update
+    }
+
+    /**
+     * Creates url for page. Cuts date and extension from the file name '2013-01-01-file-name.markdown'.
+     *
+     * @param basePath base path to the page
+     * @param location location of the file
+     *
+     * @return formatted url to the page.
+     */
+    private String getPostUrl(String basePath, String location) {
+        basePath + location.substring(location.lastIndexOf('/') + 12, location.lastIndexOf('.')) + '/'
     }
 
     /**

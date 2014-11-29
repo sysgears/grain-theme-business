@@ -25,4 +25,9 @@ class ThemeTagLib {
 
         String.format("%tFT%<tT${tz.substring(0, 3)}:${tz.substring(3)}", model.date)
     }
+
+    def markdown = { String markdown ->
+        String html = [source: markdown ?: "None", markup: 'md'].render().toString()
+        html.replaceAll(/(?s)^<p>(.*)<\/p>$/, '$1')
+    }
 }

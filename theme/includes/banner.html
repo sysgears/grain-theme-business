@@ -12,15 +12,11 @@
 
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner">
-                    <div class="item active">
-                        <img class="img-responsive img-full" src="${page.slides.slide_1}" alt="">
-                    </div>
-                    <div class="item">
-                        <img class="img-responsive img-full" src="${page.slides.slide_2}" alt="">
-                    </div>
-                    <div class="item">
-                        <img class="img-responsive img-full" src="${page.slides.slide_3}" alt="">
-                    </div>
+                    <% page.banner.slides.eachWithIndex { slide, idx -> %>
+                        <div class="item${idx == 0 ? ' active' : ''}">
+                            <img class="img-responsive img-full" src="${r slide}" alt="">
+                        </div>
+                    <% } %>
                 </div>
 
                 <!-- Controls -->
@@ -32,12 +28,12 @@
                 </a>
             </div>
             <h2 class="brand-before">
-                <small>${page.slides.brand_before}</small>
+                <small>${page.banner.brand_before}</small>
             </h2>
-            <h1 class="brand-name">${page.slides.brand_name}</h1>
+            <h1 class="brand-name">${page.banner.brand_name}</h1>
             <hr class="tagline-divider">
             <h2>
-                <small>${markdown(page.slides.brand_after)}</small>
+                <small>${markdown(page.banner.brand_after)}</small>
             </h2>
         </div>
     </div>

@@ -1,5 +1,42 @@
 ---
 layout: default
 ---
-${include "post_list.html"}
-${content}
+<div class="container">
+
+    <div class="row">
+        <div class="box">
+            <div class="col-lg-12">
+                <hr>
+                <h2 class="intro-text text-center">${markdown(page.title)}</h2>
+                <hr>
+            </div>
+            <% page.posts.each { item ->
+            def brief = item.render().content.split('<!--more-->').head()
+            %>
+            <div class="col-lg-12 text-center">
+                <img class="img-responsive img-border img-full" src="${r item.image}" alt="">
+                <h2>${item.title}
+                    <br>
+                    <small>${item.date.format('MMMMMMMMM dd, yyyy', )}</small>
+                </h2>
+                <p>${brief}</p>
+                <a href="${site.url}${item.url}" class="btn btn-default btn-lg">Read More</a>
+                <hr>
+            </div>
+            <% } %>
+            <div class="col-lg-12 text-center">
+                <ul class="pager">
+                    <% if (page.paginator.prev_page) { %>
+                    <li class="previous"><a href="${page.paginator.prev_page}">&larr; Older</a>
+                    </li>
+                    <% } %>
+                    <% if (page.paginator.next_page) { %>
+                    <li class="next"><a href="${page.paginator.next_page}">Newer &rarr;</a>
+                    </li>
+                    <% } %>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>

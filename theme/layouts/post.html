@@ -1,9 +1,34 @@
 ---
 layout: default
 ---
-${include "post.html"}
-${content}
-
-<% site.pages.findAll { it.layout == 'post1' }.each { page -> %>
-<p><a href="${site.url}${page.url}">${page.title}</a></p>
-<% } %>
+<div class="container">
+    <div class="row">
+        <div class="box">
+            <div class="col-lg-12">
+                <hr>
+                <h2 class="intro-text text-center">${page.title}</h2>
+                <hr>
+            </div>
+            <div class="col-lg-12 text-center">
+                <img class="img-responsive img-border img-full" src="${page.image}" alt="">
+                <h2>
+                    <small>${page.date.format('MMMMMMMMM dd, yyyy', )}</small>
+                </h2>
+                <p>${content}</p>
+                <hr>
+            </div>
+            <div class="col-lg-12 text-center">
+                <ul class="pager">
+                    <% if (page.prev_post) { %>
+                        <li class="previous"><a href="${page.prev_post.url}">&larr; Older</a>
+                        </li>
+                    <% } %>
+                    <% if (page.next_post) { %>
+                        <li class="next"><a href="${page.next_post.url}">Newer &rarr;</a>
+                        </li>
+                    <% } %>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

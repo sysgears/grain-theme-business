@@ -1,6 +1,7 @@
 package com.sysgears.theme
 
 import com.sysgears.grain.taglib.Site
+import com.sysgears.theme.pagination.Paginator
 
 /**
  * Change pages urls and extend models.
@@ -22,10 +23,41 @@ class ResourceMapper {
     def map = { resources ->
 
         def refinedResources = resources.findResults(filterPublished).collect { Map resource ->
-            customizeUrls << fillDates << resource
-        }
+            customizeUrls <<
+                fillDates <<
+                resource
+        }.sort { -it.date.time }
 
-        refinedResources
+        customizeModels << refinedResources
+    }
+
+    /**
+     * Customizes pages models, applies pagination (creates new pages)
+     */
+    private def customizeModels = { List resources ->
+        def posts = resources.findAll { it.layout == 'post' }
+
+        resources.inject([]) { List updatedResources, Map page ->
+            def applyPagination = { items, perPage, url, model = [:] ->
+                updatedResources += Paginator.paginate(items, 'posts', perPage, url, page + model)
+            }
+            switch (page.url) {
+                case '/blog/':
+                    applyPagination(posts, 3, page.url)
+                    break
+                case ~/\/articles\/.*/:
+                    def post = posts.find { it.url == page.url }
+                    def index = posts.indexOf(post)
+                    def prev = index > 0 ? posts[index - 1] : null
+                    def next = posts[index + 1]
+                    updatedResources << (page + [prev_post: prev, next_post: next])
+                    break
+                default:
+                    updatedResources << page
+            }
+
+            updatedResources
+        }
     }
 
     /**
@@ -52,7 +84,7 @@ class ResourceMapper {
      *
      * @return formatted url to the page.
      */
-    private String getPostUrl(String basePath, String location) {
+    private static String getPostUrl(String basePath, String location) {
         basePath + location.substring(location.lastIndexOf('/') + 12, location.lastIndexOf('.')) + '/'
     }
 

@@ -1,0 +1,22 @@
+---
+layout: post
+title: "Post 4 title"
+image: /images/slide-1.jpg
+date: 2013-10-13 15:27
+published: true
+author: John Doe
+comments: true
+---
+
+Lid est **laborum dolo** rumes fugats untras. Etharums ser quidem rerum facilis dolores nemis omnis fugats vitaes nemo
+minima rerums unsers sadips amets. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
+doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae
+vitae dicta sunt explicabo.
+
+<!--more-->
+
+Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
+doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae
+vitae dicta sunt explicabo. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
+doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae
+vitae dicta sunt explicabo.

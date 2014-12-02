@@ -71,5 +71,30 @@ layout: default
 title: "${pageTitle}"
 published: true
 ---
-""")}
+""")},
+/*
+ * Creates new post.
+ *
+ * title - new post title
+ */
+'create-post': { String postTitle ->
+            def date = new Date()
+            def fileDate = date.format("yyyy-MM-dd")
+            def filename = fileDate + "-" + postTitle.encodeAsSlug() + ".markdown"
+            def blogDir = new File(content_dir + "/articles/")
+            if (!blogDir.exists()) {
+                blogDir.mkdirs()
+            }
+            def file = new File(blogDir, filename)
+
+            file.exists() || file.write("""---
+layout: post
+title: "${postTitle}"
+date: "${date.format(datetime_format)}"
+author:
+comments: true
+published: false
+---
+""")},
+
 ]

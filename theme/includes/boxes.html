@@ -8,7 +8,9 @@
                     ${markdown(frame.title)}
                 </h2>
                 <hr>
-                <img class="img-responsive img-border img-left" src="${frame.image}" alt="">
+                <% if (frame.image) { %>
+                    <img class="img-responsive img-border img-left" src="${frame.image}" alt="">
+                <% } %>
                 <hr class="visible-xs">
                 <p>${markdown(frame.text)}</p>
             </div>

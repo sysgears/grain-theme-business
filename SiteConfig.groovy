@@ -6,8 +6,11 @@ import com.sysgears.theme.taglib.ThemeTagLib
 resource_mapper = new ResourceMapper(site).map
 tag_libs = [ThemeTagLib]
 
+excludes += ['/config/.*']
+
 features {
-    highlight = 'pygments' // 'none', 'pygments'
+    highlight = 'none' // 'none', 'pygments'
+    compass = 'none'
     markdown = 'txtmark'   // 'txtmark', 'pegdown'
 }
 

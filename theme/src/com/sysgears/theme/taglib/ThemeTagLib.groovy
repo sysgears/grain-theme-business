@@ -30,4 +30,8 @@ class ThemeTagLib {
         String html = [source: markdown ?: "None", markup: 'md'].render().toString()
         html.replaceAll(/(?s)^<p>(.*)<\/p>$/, '$1')
     }
+
+    def importConfig = { String location ->
+        taglib.page += taglib.site.headerParser.parse(new File(taglib.site.content_dir as String, location))
+    }
 }

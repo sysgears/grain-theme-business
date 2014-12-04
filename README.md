@@ -1,3 +1,5 @@
+![Banner](https://raw.githubusercontent.com/sysgears/grain-theme-business/master/banner.jpg)
+
 #Grain Bootstrap Theme Business Casual
 
 This theme is based on Start Bootstrap [Business Casual Template] and

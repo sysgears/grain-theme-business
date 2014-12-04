@@ -1,4 +1,3 @@
----
 navigation:
     brand: Business Casual
 sections:
@@ -10,4 +9,3 @@ sections:
       link: /blog/
     - name: Contact
       link: /contact.html
----

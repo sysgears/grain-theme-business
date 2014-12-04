@@ -6,7 +6,7 @@ import com.sysgears.theme.taglib.ThemeTagLib
 resource_mapper = new ResourceMapper(site).map
 tag_libs = [ThemeTagLib]
 
-excludes += ['/config/.*']
+excludes += ['/_[^/]*/.*'] // excludes directories that start from '_'
 
 features {
     highlight = 'none' // 'none', 'pygments'
@@ -50,6 +50,9 @@ ruby {
     //cmd_candidates = ['ruby', 'ruby1.8.7', 'ruby1.9.3', 'user.home/.rvm/bin/ruby']
     //ruby_gems = '2.2.2'
 }
+
+// Site configuration.
+posts_base_url = '/blog/posts/' // the base url for blog entries
 
 // Deployment settings.
 s3_bucket = '' // your S3 bucket name

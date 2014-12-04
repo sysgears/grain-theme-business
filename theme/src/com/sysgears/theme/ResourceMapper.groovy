@@ -45,7 +45,7 @@ class ResourceMapper {
                 case '/blog/':
                     applyPagination(posts, 3, page.url)
                     break
-                case ~/\/articles\/.*/:
+                case ~/${site.posts_base_url}.*/:
                     def post = posts.find { it.url == page.url }
                     def index = posts.indexOf(post)
                     def prev = index > 0 ? posts[index - 1] : null
@@ -68,8 +68,8 @@ class ResourceMapper {
         def update = [:]
 
         switch (location) {
-            case ~/\/articles\/.*/:
-                update.url = getPostUrl('/articles/', location)
+            case ~/\/blog\/posts\/.*/:
+                update.url = getPostUrl(site.posts_base_url, location)
                 break
         }
 

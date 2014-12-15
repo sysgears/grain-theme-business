@@ -73,7 +73,7 @@ commands = [
         file = new File(content_dir, location)
         file.parentFile.mkdirs()
         file.exists() || file.write("""---
-layout: default
+layout: site
 title: "${pageTitle}"
 published: true
 ---
@@ -87,7 +87,7 @@ published: true
             def date = new Date()
             def fileDate = date.format("yyyy-MM-dd")
             def filename = fileDate + "-" + postTitle.encodeAsSlug() + ".markdown"
-            def blogDir = new File(content_dir + "/articles/")
+            def blogDir = new File(content_dir + "${posts_base_url}")
             if (!blogDir.exists()) {
                 blogDir.mkdirs()
             }
@@ -96,10 +96,9 @@ published: true
             file.exists() || file.write("""---
 layout: post
 title: "${postTitle}"
+image:
 date: "${date.format(datetime_format)}"
-author:
-comments: true
-published: false
+published: true
 ---
 """)},
 

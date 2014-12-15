@@ -4,8 +4,6 @@ title: "Post 1 title"
 image: /images/slide-1.jpg
 date: 2013-10-16 15:27
 published: true
-author: John Doe
-comments: true
 ---
 
 Lid est **laborum dolo** rumes fugats untras. Etharums ser quidem rerum facilis dolores nemis omnis fugats vitaes nemo

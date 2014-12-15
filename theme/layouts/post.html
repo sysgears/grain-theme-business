@@ -10,7 +10,9 @@ layout: site
                 <hr>
             </div>
             <div class="col-lg-12 text-center">
-                <img class="img-responsive img-border img-full" src="${page.image}" alt="">
+                <% if (page.image) { %>
+                    <img class="img-responsive img-border img-full" src="${r page.image}" alt="">
+                <% } %>
                 <h2>
                     <small>${page.date.format('MMMMMMMMM dd, yyyy', )}</small>
                 </h2>

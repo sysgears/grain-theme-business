@@ -1,5 +1,4 @@
-navigation:
-    brand: Business Casual
+brand: Business Casual
 sections:
     - name: Home
       link: /

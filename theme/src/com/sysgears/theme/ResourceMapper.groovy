@@ -42,6 +42,14 @@ class ResourceMapper {
                 updatedResources += Paginator.paginate(items, 'posts', perPage, url, page + model)
             }
             switch (page.url) {
+                case '/blog/atom.xml':
+                case '/blog/rss.xml':
+                    int maxRss = 20
+                    def lastUpdated = new Date(posts.max { it.updated.time }.updated.time as Long)
+
+                    // Here we inject 'posts' variable into the model of 'atom.xml' or 'rss.xml'
+                    updatedResources << (page + [posts: posts.take(maxRss), lastUpdated: lastUpdated, site:this.site])
+                    break
                 case '/blog/':
                     applyPagination(posts, 3, page.url)
                     break

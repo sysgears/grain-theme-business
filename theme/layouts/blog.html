@@ -29,11 +29,11 @@ layout: site
             <div class="col-lg-12 text-center">
                 <ul class="pager">
                     <% if (page.paginator.prev_page) { %>
-                    <li class="previous"><a href="${page.paginator.prev_page}">&larr; Newer</a>
+                    <li class="previous"><a href="${link page.paginator.prev_page}">&larr; Newer</a>
                     </li>
                     <% } %>
                     <% if (page.paginator.next_page) { %>
-                    <li class="next"><a href="${page.paginator.next_page}">Older &rarr;</a>
+                    <li class="next"><a href="${link page.paginator.next_page}">Older &rarr;</a>
                     </li>
                     <% } %>
                 </ul>

@@ -113,3 +113,5 @@ blog_feed {
     }
     posts_per_feed = 20
 }
+
+known_file_types = [".html", ".js", ".css", ".xml", ".markdown", ".jpg", ".svg", ".ttf", ".woff", ".eot"]

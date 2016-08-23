@@ -2,10 +2,12 @@ package com.sysgears.theme
 
 import com.sysgears.grain.taglib.Site
 import com.sysgears.theme.pagination.Paginator
+import groovy.util.logging.Slf4j
 
 /**
  * Change pages urls and extend models.
  */
+@Slf4j
 class ResourceMapper {
 
     /**
@@ -22,7 +24,9 @@ class ResourceMapper {
      */
     def map = { resources ->
 
-        def refinedResources = resources.findResults(filterPublished).collect { Map resource ->
+        def filterResources = filterKnownTypes(resources).findResults(filterPublished)
+
+        def refinedResources = filterResources.collect { Map resource ->
             customizeUrls <<
                 fillDates <<
                 resource
@@ -109,5 +113,21 @@ class ResourceMapper {
         def update = [date: it.date ? Date.parse(site.datetime_format, it.date) : new Date(it.dateCreated as Long),
                 updated: it.updated ? Date.parse(site.datetime_format, it.updated) : new Date(it.lastUpdated as Long)]
         it + update
+    }
+
+    private def filterKnownTypes = { resources ->
+        def (knownResources, unknownResources) = resources.split { resource ->
+            site.known_file_types.any { type -> resource.location.endsWith(type) }
+        }
+        unknownResources << handleUnknownResources
+        knownResources
+    }
+
+    private def handleUnknownResources = { resources ->
+        def locations = resources.collect { it -> it.location}
+        log.warn "WARNING: you tried to use files with unknown type: ${locations.join(",\n")}.\n" +
+                "These files wasn't handled to prevent unexpected errors.\n" +
+                "If you really want to use this files, please extend the list of known file types by adding " +
+                "needed file extensions to the \"known_file_types\" in the SiteConfig.groovy."
     }
 }

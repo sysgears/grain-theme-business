@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <title><![CDATA[${site.blog_feed.title}]]></title>
+    <link href="${site.url}${page.url}" rel="self"/>
+    <link href="${site.url}/"/>
+    <updated>${page.lastUpdated.format("yyyy-MM-dd'T'HH:mm:ssXXX")}</updated>
+    <id>${site.url}</id>
+    <author>
+        <name><![CDATA[${site.blog_feed.author.name}]]></name>
+        <% if (site.blog_feed.author.email) { %>
+            <email><![CDATA[${site.blog_feed.author.email}]]></email>
+        <% } %>
+    </author>
+    <generator uri="http://sysgears.com/grain/docs/latest/">Grain</generator>
+
+    <% page.posts.each { post -> %>
+        <entry>
+            <title type="html"><![CDATA[${post.title}]]></title>
+            <link href="${site.url}${post.url}"/>
+            <updated>${post.date.format("yyyy-MM-dd'T'HH:mm:ssXXX")}</updated>
+            <id><![CDATA[${site.url}${post.url}]]></id>
+            <content type="html"><![CDATA[${post.render().content}]]></content>
+        </entry>
+    <% } %>
+</feed>

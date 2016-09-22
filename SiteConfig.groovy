@@ -103,3 +103,15 @@ published: true
 """)},
 
 ]
+
+// Blog configuration for rss and atom feeds.
+blog_feed {
+    title = 'Business Casual'
+    author {
+        name = 'John Doe'
+        email = 'author@email.com'
+    }
+    posts_per_feed = 20
+}
+
+known_file_types = [".html", ".js", ".css", ".xml", ".markdown", ".jpg", ".svg", ".ttf", ".woff", ".eot"]
